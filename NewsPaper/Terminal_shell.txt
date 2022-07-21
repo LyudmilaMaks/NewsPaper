@@ -1,0 +1,138 @@
+
+
+PS C:\Users\lyudm\PycharmProjects\pythonProject1> venv\scripts\activate
+(venv) PS C:\Users\lyudm\PycharmProjects\pythonProject1> cd newspaper
+(venv) PS C:\Users\lyudm\PycharmProjects\pythonProject1\newspaper> py manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:08:11) [MSC v.1928 32 bit (Intel)] on win32        
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from news import *
+>>> author = Author.objects.get(id=2)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Author' is not defined
+>>> from news.models import *
+>>> u1 = User.objects.create_user(username='Dima')
+>>> Author.objects.create(authorUser=u1)
+<Author: Author object (3)>
+>>> Category.objects.create(name='Voyage')
+<Category: Category object (5)>
+>>> author = Author.objects.get(id=3)
+>>> author
+<Author: Author object (3)>
+>>> Post.objects.create(author=author,categoryType='AR', title='samevoyagetitle', text='samebigvoyaget
+ext')
+<Post: Post object (2)>
+>>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=5))
+>>> Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=2).au
+thorUser, text='samelittletext')
+<Comment: Comment object (2)>
+>>> Comment.objects.get(id=2).like()
+>>> Comment.objects.get(id=2).like()
+>>> Comment.objects.get(id=2).rating 
+2
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).rating
+3
+>>> Author.objects.get(id=1)
+<Author: Author object (1)>
+>>> a = Author.objects.get(id=1)
+>>> a.update_rating()
+>>> a.ratingAuthor
+0
+>>> Author.objects.get(id=2)
+<Author: Author object (2)>
+>>> a = Author.objects.get(id=2)
+>>> a.update_rating()
+>>> a.ratingAuthor
+0
+>>> Author.objects.get(id=3)
+<Author: Author object (3)>
+>>> a = Author.objects.get(id=3)
+>>> a.update_rating
+>>> a.ratingAuthor
+0
+>>> Author.objects.get(id=2)
+<Author: Author object (2)>
+>>> author = Author.objects.get(id=2)
+>>> Post.objects.create(author=author,categoryType='AR',title='enathertitle',text='sameanatherbigtext
+')
+<Post: Post object (3)>
+>>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=4))
+>>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
+>>> Comment.objects.create(commentPost=Post.objects.get(id=3),commentUser=Author.objects.get(id=1).au
+thorUser, text='samelittletext')
+<Comment: Comment object (3)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=3),commentUser=Author.objects.get(id=3).au
+thorUser, text='somelittletext')
+<Comment: Comment object (4)>
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=3).rating
+-1
+>>> Comment.objects.get(id=4).like()
+>>> Comment.objects.get(id=4).like()
+>>> Author.objects.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>]>
+>>> Comment.objects.all()
+<QuerySet [<Comment: Comment object (1)>, <Comment: Comment object (2)>, <Comment: Comment object (3)
+>, <Comment: Comment object (4)>]>
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>, <Post: Post object (2)>, <Post: Post object (3)>]>
+>>> Author.objects.get(id=1).update_rating
+<bound method Author.update_rating of <Author: Author object (1)>>
+>>> Author.objects.get(id=1).update_rating  
+<bound method Author.update_rating of <Author: Author object (1)>>
+>>> Author.objects.get(id=1).ratingAuthor
+0
+>>> Author.objects.get(id=1).ratingAuthor
+0
+>>> Author.objects.get(id=1).ratingAuthor
+0
+>>> Author.objects.get(id=1).ratingAuthor  
+0
+>>> Author.objects.get(id=2).updateRating
+>>> Author.objects.get(id=2).update_rating 
+<bound method Author.update_rating of <Author: Author object (2)>>
+>>> Author.objects.get(id=2).ratingAuthor 
+0
+>>> Author.objects.get(id=3).uodate_rating   
+>>> Author.objects.get(id=3).update_rating 
+<bound method Author.update_rating of <Author: Author object (3)>>
+>>> Author.objects.get(id=3).ratingAuthor  
+0
+>>> a=Author.objects.get(id=3)
+>>> a.update_rating()
+>>> a.ratingAuthor
+0
+>>> c = Author.objects.order_by('-ratingAuthor')[:1]
+>>> c
+<QuerySet [<Author: Author object (1)>]
+
+>>> Post.objects.order_by('-rating')[:1]
+<QuerySet [<Post: Post object (2)>]>
+>>> Post.objects.get(id=2).dateCreation
+datetime.datetime(2022, 7, 20, 21, 33, 36, 644445, tzinfo=datetime.timezone.utc)
+>>> Post.objects.get(id=2).author      
+<Author: Author object (3)>
+>>> Post.objects.get(id=2).rating
+3
+>>> Post.objects.get(id=2).title        
+'samevoyagetitle'
+>>> Post.objects.get(id=2)
+<Post: Post object (2)>
+>>> Post.objects.get(id=2).rating
+3
+>>> Post.objects.get(id=2).author  
+<Author: Author object (3)>
+>>> Post.objects.get(id=2).author                   
+<Author: Author object (3)>
+>>> Post.objects.get(id=2).title 
+'samevoyagetitle'
+>>> Post.objects.get(id=2).dateCreation
+datetime.datetime(2022, 7, 20, 21, 33, 36, 644445, tzinfo=datetime.timezone.utc)
+>>> Post.objects.get(id=2).categoryType
+'AR'
+>>> Post.objects.get(id=2).preview()
+'samebigvoyagetext...'
